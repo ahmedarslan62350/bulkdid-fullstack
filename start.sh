@@ -1,6 +1,37 @@
 #!/bin/bash
 
 clear
+
+# === CLONE REPOSITORIES ===
+echo "============================="
+echo "=== Cloning Repositories  ==="
+echo "============================="
+
+# Clone frontend
+if [ ! -d "frontend" ]; then
+  git clone git@github.com:ahmedarslan62350/bulkdid.git frontend
+else
+  echo "Frontend directory already exists, skipping clone."
+fi
+
+# Clone backend
+if [ ! -d "backend" ]; then
+  git clone git@github.com:ahmedarslan62350/bulkdid-backend.git backend
+else
+  echo "Backend directory already exists, skipping clone."
+fi
+
+if [ ! -d "whatsapp-message-sender" ]; then
+  git clone https://github.com/ahmedarslandev/whatsapp-message-sender.git whatsapp-message-sender
+else
+  echo "whatsapp-message-sender directory already exists, skipping clone."
+fi
+
+# === MAKE build.sh EXECUTABLE ===
+echo "Making backend/build.sh executable..."
+chmod +x backend/build.sh
+
+# === FRONTEND ENV SETUP ===
 echo "============================="
 echo "=== Frontend Environment ==="
 echo "============================="
@@ -17,6 +48,7 @@ rm fe_env.tmp
 
 cd ../backend || exit 1
 
+# === BACKEND ENV SETUP ===
 echo "============================="
 echo "=== Backend Environment  ==="
 echo "============================="
